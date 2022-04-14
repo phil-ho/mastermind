@@ -2,24 +2,24 @@ import React, {useState} from 'react';
 import styles from './game.module.css';
 
 import GuessList from '../GuessList';
+import CodeMaker from '../CodeMaker';
 
 const Game = () => {
   const maxTurns = 10;
-  const generateSecretCode = () => {
-    return [1,2,3,4];
-  }
+  const codes = ['0', '1', '2', '3', '4', '5', '6', '7'];
+
   const generateFeedback = (guess) => {
     // return feedback for guess
   }
+  const generateSecretCode = () => {
+    return ['1', '2', '3', '4'];
+  }
 
   const [secretCode, setSecretCode] = useState(generateSecretCode());
-  const [guesses, setGuesses] = useState([
-    [1,3,4,5],
-    [2,3,4,5],
-  ]);
+  const [guesses, setGuesses] = useState([]);
 
   const handleGuess = (guess) => {
-    // add guess to guesses
+    setGuesses([...guesses, guess]);
     // compare guess to secret code
   }
 
@@ -40,8 +40,11 @@ const Game = () => {
     <div className={styles.game}>
       {hasWon() && (<div className={styles.hasWon}>You Won!</div>)}
       {hasLost() && (<div className={styles.hasWon}>You Lost!</div>)}
-      GAME BOARD
       <GuessList guesses={guesses} />
+      <CodeMaker
+        size={4}
+        codes={codes}
+        onCodeSubmit={handleGuess} />
     </div>
   )
 
