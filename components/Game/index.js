@@ -44,7 +44,7 @@ const Game = () => {
     return ['1', '2', '3', '4'];
   }
 
-  const [secretCode, setSecretCode] = useState(generateSecretCode());
+  const [secretCode, setSecretCode] = useState();
   const [guessList, setGuessList] = useState([]);
 
   const handleGuess = (guess) => {
@@ -93,9 +93,14 @@ const Game = () => {
     );
   }
 
-  return (
-    <div className={styles.game}>
-      <button onClick={handleNewGame}>New Game</button>
+  const renderWelcomeScreen = () => (
+    <div className={styles.welcome}>
+      <h1>Welcome to Mastermind!</h1>
+    </div>
+  );
+
+  const renderGame = () => (
+    <>
       {renderPrompt()}
       <GuessList
         guessList={guessList}
@@ -104,6 +109,14 @@ const Game = () => {
         size={4}
         codes={codes}
         onCodeSubmit={handleGuess} />
+    </>
+  );
+
+  return (
+    <div className={styles.game}>
+      <button onClick={handleNewGame}>New Game</button>
+      {!secretCode && renderWelcomeScreen()}
+      {secretCode && renderGame()}
     </div>
   )
 
