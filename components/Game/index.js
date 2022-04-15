@@ -12,24 +12,25 @@ const Game = () => {
     let fullMatch = 0;
     let partialMatch = 0;
 
-    const guessCopy = [...guess];
+    let guessCopy = [...guess];
     const secretCopy = [...secretCode];
 
     // look for full matches
     for (let i = 0; i < secretCode.length; i++) {
       if (guess[i] === secretCode[i]) {
         fullMatch++;
-        guessCopy.splice(i, 1);
-        secretCopy.splice(i, 1);
+        guessCopy[i] = 'null';
+        secretCopy[i] = 'null';
       }
     }
 
+    guessCopy = guessCopy.filter((value) => value !== 'null');
     // look for partial matches
     for (let guessCode of guessCopy) {
       const i = secretCopy.indexOf(guessCode);
-      if (i > 0) {
+      if (i >= 0) {
         partialMatch++;
-        secretCopy.splice(i, 1);
+        secretCopy[i] = 'null';
       }
     }
 
@@ -44,33 +45,32 @@ const Game = () => {
   }
 
   const [secretCode, setSecretCode] = useState(generateSecretCode());
-  const [guesses, setGuesses] = useState([]);
+  const [guessList, setGuessList] = useState([]);
 
   const handleGuess = (guess) => {
-    setGuesses([...guesses, guess]);
+    setGuessList([...guessList, guess]);
     // compare guess to secret code
   }
 
   const hasWon = () => {
-    return guesses.length > 0 &&
-      guesses[guesses.length - 1].join('') === secretCode.join('');
+    return guessList.length > 0 &&
+      guessList[guessList.length - 1].join('') === secretCode.join('');
   }
 
   const hasLost = () => {
-    return guesses.length >= maxTurns
+    return guessList.length >= maxTurns
   }
 
   // reset/restart game
     // generate new code
     // clear guesses
-
   return (
     <div className={styles.game}>
       {hasWon() && (<div className={styles.hasWon}>You Won!</div>)}
-      {hasLost() && (<div className={styles.hasWon}>You Lost!</div>)}
+      {hasLost() && (<div className={styles.hasLost}>You Lost!</div>)}
       <GuessList
-        guesses={guesses}
-        feedbacks={guesses.map((guess) => createFeedback(guess))} />
+        guessList={guessList}
+        feedbackList={guessList.map((guess) => createFeedback(guess))} />
       <CodeMaker
         size={4}
         codes={codes}

@@ -3,7 +3,6 @@ import React, {useState} from 'react';
 
 const CodeInput = ({codes, selected, onChange}) => {
   const handleChange = (evt) => {
-    console.log(evt);
     onChange(evt.target.value);
   };
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './guess.module.css';
 
-const GuessList = ({ guess }) => {
+const Guess = ({ guess }) => {
   return (
     <div className={styles.guess}>
       {guess.join('')}
@@ -9,4 +9,4 @@ const GuessList = ({ guess }) => {
   )
 };
 
-export default GuessList;
+export default Guess;

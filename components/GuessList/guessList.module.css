@@ -1,3 +1,7 @@
 .guessList {
 
 }
+
+.guessListItem {
+  display: flex;
+}
