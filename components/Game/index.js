@@ -41,9 +41,28 @@ const Game = () => {
   }
 
   const generateSecretCode = () => {
-    return ['1', '2', '3', '4'];
+    const url = 'https://www.random.org/integers/';
+    const num = 4;
+    const min = 0;
+    const max = 7;
+    const col = 1;
+    const base = 10;
+    const format = 'plain';
+    const rnd = 'new';
+
+    setIsLoading(true);
+
+    fetch(`${url}?num=${num}&min=${min}&max=${max}&col=${col}&base=${base}&format=${format}&rnd=${rnd}`)
+      .then((response) => response.text())
+      .then(text => {
+        const newCodeArray = text.split('\n').slice(0, num);
+        setSecretCode(newCodeArray);
+      })
+      .catch(err => console.log(err))
+      .finally(() => setIsLoading(false));
   }
 
+  const [isLoading, setIsLoading] = useState(false);
   const [secretCode, setSecretCode] = useState();
   const [guessList, setGuessList] = useState([]);
 
@@ -55,7 +74,8 @@ const Game = () => {
 
   const handleNewGame = () => {
     setGuessList([]);
-    setSecretCode(generateSecretCode());
+    setSecretCode();
+    generateSecretCode();
   }
 
   const hasWon = () => {
@@ -114,6 +134,7 @@ const Game = () => {
 
   return (
     <div className={styles.game}>
+      {isLoading && (<div className="loading indicator">LOADING...</div>)}
       <button onClick={handleNewGame}>New Game</button>
       {!secretCode && renderWelcomeScreen()}
       {secretCode && renderGame()}
