@@ -39,8 +39,9 @@ const createFeedback = (guess, secretCode) => {
 }
 
 const Game = () => {
-  const maxTurns = 10;
   const codes = ['0', '1', '2', '3', '4', '5', '6', '7'];
+  const maxTurns = 10;
+  const secretCodeLength = 4;
 
   const generateSecretCode = () => {
     const url = 'https://www.random.org/integers/';
@@ -135,6 +136,7 @@ const Game = () => {
         keys={codes}
         onChange={(keyPresses) => console.log(keyPresses.join(', '))}
         onEnter={() => console.log('keyboard enter pressed')}
+        size={secretCodeLength}
       />
     </>
   );

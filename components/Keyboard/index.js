@@ -3,14 +3,17 @@ import styles from './keyboard.module.css';
 
 const Keyboard = ({
   keys,
+  size,
   onEnter,
   onChange,
 }) => {
   const [keyPresses, setKeyPresses] = useState([]);
   const handleKeypress = (key) => {
-    const newValue = [...keyPresses, key];
-    onChange(newValue);
-    setKeyPresses(newValue);
+    if (keyPresses.length < size) {
+      const newValue = [...keyPresses, key];
+      onChange(newValue);
+      setKeyPresses(newValue);
+    }
   };
   const handleBackspace = () => {
     const newValue = keyPresses.slice(0,-1);
@@ -18,9 +21,12 @@ const Keyboard = ({
     setKeyPresses(newValue);
   }
   const handleEnter = () => {
-    onEnter();
-    setKeyPresses([]);
+    if (keyPresses.length >= size) {
+      onEnter();
+      setKeyPresses([]);
+    }
   }
+
   return (
     <div className={styles.keyboard}>
       <button onClick={handleEnter}>Enter</button>
