@@ -48,8 +48,14 @@ const Game = () => {
   const [guessList, setGuessList] = useState([]);
 
   const handleGuess = (guess) => {
-    setGuessList([...guessList, guess]);
-    // compare guess to secret code
+    if (!hasWon() && !hasLost()) {
+      setGuessList([...guessList, guess]);
+    }
+  }
+
+  const handleNewGame = () => {
+    setGuessList([]);
+    setSecretCode(generateSecretCode());
   }
 
   const hasWon = () => {
@@ -58,16 +64,39 @@ const Game = () => {
   }
 
   const hasLost = () => {
-    return guessList.length >= maxTurns
+    return guessList.length >= maxTurns;
   }
 
-  // reset/restart game
-    // generate new code
-    // clear guesses
+  const renderPrompt = () => {
+    let message = "Can you crack the secret code?";
+    const messageStyle = [styles.message];
+    if (hasWon()) {
+      message = 'You Cracked the Secret Code!';
+      messageStyle.push(styles.hasWon);
+    }
+    if (hasLost()) {
+      message = 'Sorry! You Failed to crack the code!';
+      messageStyle.push(styles.hasLost);
+    }
+
+    return (
+      <div className={styles.codeMaker}>
+        <h2 className={messageStyle.join(' ')}>{message}</h2>
+        <ul className={styles.showSecretList}>
+          {secretCode.map((code, index) => (
+            <li className={styles.showSecretListItem} key={index}>
+              {(hasWon() || hasLost()) ? code : "?"}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.game}>
-      {hasWon() && (<div className={styles.hasWon}>You Won!</div>)}
-      {hasLost() && (<div className={styles.hasLost}>You Lost!</div>)}
+      <button onClick={handleNewGame}>New Game</button>
+      {renderPrompt()}
       <GuessList
         guessList={guessList}
         feedbackList={guessList.map((guess) => createFeedback(guess))} />

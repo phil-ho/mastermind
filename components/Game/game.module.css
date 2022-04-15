@@ -7,10 +7,34 @@
   align-items: center;
 }
 
+.message {
+
+}
+
 .hasWon {
   color: green;
 }
 
 .hasLost {
   color: red;
+}
+
+.showSecretList {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.showSecretListItem {
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid black;
+  display: flex;
+  font-size: 200%;
+  justify-content: center;
+  margin: 8px;
+  min-height: 2em;
+  min-width: 1.3em;
+  padding: 8px;
 }
