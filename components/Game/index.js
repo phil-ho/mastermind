@@ -70,7 +70,9 @@ const Game = () => {
 
 
   const handleGuessChange = (codeArray) => {
-    setCurrentGuess(codeArray);
+    if (!hasWon() && !hasLost()) {
+      setCurrentGuess(codeArray);
+    }
   };
 
   const handleGuessSubmit = () => {
@@ -131,10 +133,11 @@ const Game = () => {
     <>
       {renderPrompt()}
       <GuessList
+        currentGuess={currentGuess}
         guessList={guessList}
-        feedbackList={guessList.map((guess) => createFeedback(guess, secretCode))} />
-
-      {currentGuess && currentGuess.join(', ')}
+        feedbackList={guessList.map((guess) => createFeedback(guess, secretCode))}
+        maxTurns={maxTurns}
+        secretCodeLength={secretCodeLength} />
       <Keyboard
         keys={codes}
         onChange={handleGuessChange}

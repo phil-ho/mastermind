@@ -1,0 +1,16 @@
+.keyboard {
+  font-size: 150%;
+}
+
+.key {
+  font-size: 150%;
+  margin: 8px;
+}
+
+.back {
+  color: red;
+}
+
+.enter {
+  color: green;
+}
