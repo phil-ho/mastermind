@@ -2,8 +2,6 @@ import React, {useState} from 'react';
 import styles from './game.module.css';
 
 import GuessList from '../GuessList';
-import CodeMaker from '../CodeMaker';
-
 import Keyboard from '../Keyboard';
 
 const createFeedback = (guess, secretCode) => {
@@ -110,7 +108,7 @@ const Game = () => {
     }
 
     return (
-      <div className={styles.codeMaker}>
+      <div className={styles.prompt}>
         <h2 className={messageStyle.join(' ')}>{message}</h2>
         <ul className={styles.showSecretList}>
           {secretCode.map((code, index) => (
