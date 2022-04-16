@@ -68,27 +68,34 @@ const Game = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [secretCode, setSecretCode] = useState();
   const [guessList, setGuessList] = useState([]);
+  const [currentGuess, setCurrentGuess] = useState();
 
-  const handleGuess = (guess) => {
+
+  const handleGuessChange = (codeArray) => {
+    setCurrentGuess(codeArray);
+  };
+
+  const handleGuessSubmit = () => {
     if (!hasWon() && !hasLost()) {
-      setGuessList([...guessList, guess]);
+      setGuessList([...guessList, currentGuess]);
+      setCurrentGuess();
     }
-  }
+  };
 
   const handleNewGame = () => {
     setGuessList([]);
     setSecretCode();
     generateSecretCode();
-  }
+  };
 
   const hasWon = () => {
     return guessList.length > 0 &&
       guessList[guessList.length - 1].join('') === secretCode.join('');
-  }
+  };
 
   const hasLost = () => {
-    return guessList.length >= maxTurns;
-  }
+    return !hasWon() && guessList.length >= maxTurns;
+  };
 
   const renderPrompt = () => {
     let message = "Can you crack the secret code?";
@@ -114,7 +121,7 @@ const Game = () => {
         </ul>
       </div>
     );
-  }
+  };
 
   const renderWelcomeScreen = () => (
     <div className={styles.welcome}>
@@ -128,14 +135,12 @@ const Game = () => {
       <GuessList
         guessList={guessList}
         feedbackList={guessList.map((guess) => createFeedback(guess, secretCode))} />
-      <CodeMaker
-        size={4}
-        codes={codes}
-        onCodeSubmit={handleGuess} />
+
+      {currentGuess && currentGuess.join(', ')}
       <Keyboard
         keys={codes}
-        onChange={(keyPresses) => console.log(keyPresses.join(', '))}
-        onEnter={() => console.log('keyboard enter pressed')}
+        onChange={handleGuessChange}
+        onEnter={handleGuessSubmit}
         size={secretCodeLength}
       />
     </>
