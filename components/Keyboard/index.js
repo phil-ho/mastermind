@@ -43,7 +43,7 @@ const Keyboard = ({
     <div className={styles.keyboard}>
       <button className={clsx(styles.key, styles.enter)} onClick={handleEnter}>Enter</button>
       {renderKeys()}
-      <button className={clsx(styles.key, styles.back)} onClick={handleBackspace}>Backspace</button>
+      <button className={clsx(styles.key, styles.back)} onClick={handleBackspace}>Delete</button>
     </div>
   )
 };

@@ -26,12 +26,21 @@ const Feedback = ({size, full, partial}) => {
   const [randomizedFeedback, setRandomizedFeedback] = useState(randomizeFeedback(size, full, partial));
 
   const renderFeedbackItems = () => randomizedFeedback.map((score, index) => (
-    <div key={index} attr-data={score} className={styles.feedbackPin}>{score}</div>
+    <span
+      aria-hidden="true"
+      attr-data={score}
+      className={styles.feedbackIcon}
+      key={index}>
+    </span>
   ));
+
+  const feedbackLabel = `${full} correct numbers in the correct spots. ${partial} correct numbers but in the wrong spots. ${size - full - partial} incorrect numbers.`;
 
   return (
     <div className={styles.feedback}>
-      {renderFeedbackItems()}
+      <button className={styles.feedbackButton} aria-label={feedbackLabel}>
+        {renderFeedbackItems()}
+      </button>
     </div>
   );
 };

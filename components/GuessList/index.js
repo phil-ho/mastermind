@@ -16,22 +16,22 @@ const GuessList = ({
     return guessList.map((guess, index) => {
       const feedback = feedbackList[index];
       return (
-        <div className={styles.guessListItem} key={index}>
+        <li className={styles.guessListItem} key={index}>
           <Guess guess={guess} secretCodeLength={secretCodeLength} />
           <Feedback
             key={`feedback${index}`}
             size={secretCodeLength}
             full={feedback.fullMatch}
             partial={feedback.partialMatch} />
-        </div>
+        </li>
       )
     });
   };
 
   const renderCurrentGuess = () => {
-    const currentEle = (<div className={styles.guessListItem}>
+    const currentEle = (<li className={styles.guessListItem}>
       <Guess guess={currentGuess} secretCodeLength={secretCodeLength} />
-    </div>);
+    </li>);
 
     const turnsLeft = maxTurns - guessList.length;
     return turnsLeft > 0 ? currentEle : undefined;
@@ -44,11 +44,11 @@ const GuessList = ({
     const blanks = [];
     for (let i = 0; i < numBlanks; i++) {
       blanks.push(
-        <div className={styles.guessListItem} key={i}>
+        <li className={styles.guessListItem} key={i}>
           <Guess
 
             secretCodeLength={secretCodeLength} />
-        </div>
+        </li>
       );
     }
     return blanks;
@@ -68,9 +68,9 @@ const GuessList = ({
   };
 
   return (
-    <div className={styles.guessList}>
+    <ul className={styles.guessList}>
       {renderListItems()}
-    </div>
+    </ul>
   )
 };
 
