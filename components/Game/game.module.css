@@ -13,6 +13,11 @@
   color: red;
 }
 
+.header {
+  text-align: center;
+  width: 100%;
+}
+
 .loadingIndicator {
   align-items: center;
   background: rgba(100,100,100,.5);

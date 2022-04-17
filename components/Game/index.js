@@ -3,7 +3,6 @@ import styles from './game.module.css';
 
 import GuessList from '../GuessList';
 import Keyboard from '../Keyboard';
-import Header from '../Header';
 
 const createFeedback = (guess, secretCode) => {
   let fullMatch = 0;
@@ -125,12 +124,6 @@ const Game = () => {
     );
   };
 
-  const renderWelcomeScreen = () => (
-    <div className={styles.welcome}>
-      <h1>Welcome to Mastermind!</h1>
-    </div>
-  );
-
   const renderGame = () => (
     <>
       <GuessList
@@ -149,13 +142,16 @@ const Game = () => {
   );
 
   return (
-    <div className={styles.game}>
-      {isLoading && (<div className={styles.loadingIndicator}>...LOADING...</div>)}
-      <Header />
-      <button onClick={handleNewGame}>New Game</button>
-      {!secretCode && renderWelcomeScreen()}
-      {secretCode && renderGame()}
-    </div>
+    <>
+      <header className={styles.header}>
+        <h1>Mastermind</h1>
+      </header>
+      <div className={styles.game}>
+        {isLoading && (<div className={styles.loadingIndicator}>...LOADING...</div>)}
+        <button onClick={handleNewGame}>New Game</button>
+        {secretCode && renderGame()}
+      </div>
+    </>
   )
 
 };
