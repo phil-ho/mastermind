@@ -42,6 +42,7 @@ const Keyboard = ({
   const returnButton = (
     <button
       className={clsx(styles.key, styles.enter)}
+      disabled={keyPresses.length < size}
       onClick={handleEnter}>
         <span className="material-icons material-icons-outlined">
           keyboard_return
@@ -52,6 +53,7 @@ const Keyboard = ({
   const backspaceButton = (
     <button
       className={clsx(styles.key, styles.back)}
+      disabled={!keyPresses.length > 0}
       onClick={handleBackspace}>
         <span className="material-icons material-icons-outlined">
           backspace

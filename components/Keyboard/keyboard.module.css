@@ -47,3 +47,8 @@
 .enter {
   color: green;
 }
+
+.key[disabled] {
+  background: rgba(180, 180, 180, .90);
+  color: gray;
+}
