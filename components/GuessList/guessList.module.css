@@ -1,8 +1,12 @@
 .guessList {
-  margin: 0 2em;
+  margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .guessListItem {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }

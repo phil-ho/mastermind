@@ -21,9 +21,9 @@ const Guess = ({ guess, secretCodeLength }) => {
   }
 
   return (
-    <div className={styles.guess}>
+    <>
       {renderCodeTiles()}
-    </div>
+    </>
   )
 };
 

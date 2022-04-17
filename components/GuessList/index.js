@@ -31,6 +31,9 @@ const GuessList = ({
   const renderCurrentGuess = () => {
     const currentEle = (<li className={styles.guessListItem}>
       <Guess guess={currentGuess} secretCodeLength={secretCodeLength} />
+      <Feedback
+        size={secretCodeLength}
+        isHidden={true} />
     </li>);
 
     const turnsLeft = maxTurns - guessList.length;
@@ -45,31 +48,21 @@ const GuessList = ({
     for (let i = 0; i < numBlanks; i++) {
       blanks.push(
         <li className={styles.guessListItem} key={i}>
-          <Guess
-
-            secretCodeLength={secretCodeLength} />
+          <Guess secretCodeLength={secretCodeLength} />
+          <Feedback
+            size={secretCodeLength}
+            isHidden={true} />
         </li>
       );
     }
     return blanks;
   };
 
-  const renderListItems = () => {
-
-    const guessElements = renderPastGuesses()
-      .concat(renderCurrentGuess())
-      .concat(renderBlankGuesses());
-
-    return (
-      <>
-        {guessElements}
-      </>
-    );
-  };
-
   return (
     <ul className={styles.guessList}>
-      {renderListItems()}
+      {renderPastGuesses()}
+      {renderCurrentGuess()}
+      {renderBlankGuesses()}
     </ul>
   )
 };

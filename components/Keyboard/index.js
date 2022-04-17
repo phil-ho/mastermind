@@ -39,11 +39,33 @@ const Keyboard = ({
     ));
   };
 
+  const returnButton = (
+    <button
+      className={clsx(styles.key, styles.enter)}
+      onClick={handleEnter}>
+        <span className="material-icons material-icons-outlined">
+          keyboard_return
+        </span>
+    </button>
+  );
+
+  const backspaceButton = (
+    <button
+      className={clsx(styles.key, styles.back)}
+      onClick={handleBackspace}>
+        <span className="material-icons material-icons-outlined">
+          backspace
+        </span>
+    </button>
+  );
+
   return (
     <div className={styles.keyboard}>
-      <button className={clsx(styles.key, styles.enter)} onClick={handleEnter}>Enter</button>
-      {renderKeys()}
-      <button className={clsx(styles.key, styles.back)} onClick={handleBackspace}>Delete</button>
+      {returnButton}
+      <div className={styles.keyboardKeys}>
+        {renderKeys()}
+      </div>
+      {backspaceButton}
     </div>
   )
 };

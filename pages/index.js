@@ -10,6 +10,8 @@ export default function Home() {
         <title>Mastermind by Phillip Ho</title>
         <meta name="description" content="Mastermind Game" />
         <link rel="icon" href="/favicon.ico" />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet" />
       </Head>
 
       <Game />

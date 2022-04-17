@@ -1,20 +1,17 @@
-.feedback {
-  position: relative;
-}
-
 .feedbackButton {
   border: none;
   background: none;
   border-radius: 4px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
   gap: 4px;
   padding: 8px;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: fit-content;
+}
+
+.feedbackButton.feedbackButtonEmpty .feedbackIcon:before {
+  background: rgba(0,0,0,0);
+  border: 1px solid rgba(0, 0, 0, .5);
+  box-sizing: border-box;
 }
 
 .feedbackButton:focus,

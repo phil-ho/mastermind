@@ -3,8 +3,12 @@ import React, {useState} from 'react';
 import styles from './feedback.module.css';
 
 const Feedback = ({size, full, partial}) => {
+  const hasNoFeedback = full === undefined && partial === undefined;
 
   const randomizeFeedback = (size, full, partial) => {
+    if (hasNoFeedback) {
+      return new Array(size).fill(0);
+    }
     // build array
     const fullArray = new Array(full).fill(2);
     const partialArray = new Array(partial).fill(1);
@@ -34,14 +38,21 @@ const Feedback = ({size, full, partial}) => {
     </span>
   ));
 
-  const feedbackLabel = `${full} correct numbers in the correct spots. ${partial} correct numbers but in the wrong spots. ${size - full - partial} incorrect numbers.`;
+  const ariaAttributes = {};
+  const buttonStyles = [styles.feedbackButton];
+
+  if (hasNoFeedback) {
+    buttonStyles.push(styles.feedbackButtonEmpty);
+    ariaAttributes['aria-hidden'] = hasNoFeedback;
+    ariaAttributes.tabIndex = -1;
+  } else {
+    ariaAttributes['aria-label'] = `${full} correct numbers in the correct spots. ${partial} correct numbers but in the wrong spots. ${size - full - partial} incorrect numbers.`;
+  }
 
   return (
-    <div className={styles.feedback}>
-      <button className={styles.feedbackButton} aria-label={feedbackLabel}>
-        {renderFeedbackItems()}
-      </button>
-    </div>
+    <button className={buttonStyles.join(' ')} {...ariaAttributes}>
+      {renderFeedbackItems()}
+    </button>
   );
 };
 
