@@ -85,6 +85,7 @@ const Game = () => {
   const handleNewGame = () => {
     setGuessList([]);
     setSecretCode();
+    setCurrentGuess();
     generateSecretCode();
   };
 
@@ -149,7 +150,7 @@ const Game = () => {
 
   return (
     <div className={styles.game}>
-      {isLoading && (<div className="loading indicator">LOADING...</div>)}
+      {isLoading && (<div className={styles.loadingIndicator}>...LOADING...</div>)}
       <button onClick={handleNewGame}>New Game</button>
       {!secretCode && renderWelcomeScreen()}
       {secretCode && renderGame()}

@@ -1,14 +1,8 @@
 .game {
   min-height: 100vh;
-  padding: 4rem 0;
   flex: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-}
-
-.message {
-
 }
 
 .hasWon {
@@ -17,6 +11,25 @@
 
 .hasLost {
   color: red;
+}
+
+.loadingIndicator {
+  align-items: center;
+  background: rgba(100,100,100,.5);
+  color: white;
+  display: flex;
+  font-size: 2.5em;
+  justify-content: center;
+  left: 0;
+  padding: .5em;
+  position: fixed;
+  right: 0;
+  top: 50vh;
+  transform: translateY(-50%);
+}
+
+.prompt {
+  text-align: center;
 }
 
 .showSecretList {
@@ -37,4 +50,11 @@
   min-height: 2em;
   min-width: 1.3em;
   padding: 8px;
+}
+
+
+@media (min-width: 520px) {
+  .game {
+    align-items: center;
+  }
 }
