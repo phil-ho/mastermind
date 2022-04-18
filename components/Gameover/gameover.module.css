@@ -1,0 +1,72 @@
+.gameover {
+  min-width: 300px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 1em;
+  border-radius: 4px;
+  color: rgb(0, 0, 0, .85);
+}
+
+.hasLost {
+  color: red;
+}
+
+.hasWon {
+  color: green;
+}
+
+.newGameButton {
+  margin-top: 16px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, .85);
+  border-radius: 4px;
+  color: rgb(0, 0, 0, .85);
+  padding: 8px;
+  font-size: 120%;
+}
+
+.newGameButton:hover,
+.newGameButton:focus {
+  background:rgba(157, 214, 255, 0.6);
+}
+
+.showSecretList {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+}
+
+.showSecretListItem {
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid black;
+  display: flex;
+  font-size: 200%;
+  justify-content: center;
+  margin: 8px;
+  min-height: 2em;
+  min-width: 1.3em;
+  padding: 8px;
+}
+
+.title {
+  margin: 0;
+}
+
+.turnsTaken {
+  text-align: center;
+}
+.turnsNum {
+  margin: 8px;
+  font-size: 3em;
+}
+.turnsLabel {
+  font-size: 150%;
+  font-weight: 700;
+}

@@ -1,0 +1,68 @@
+.rules {
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: white;
+  padding: 1em;
+  border-radius: 4px;
+  color: rgb(0, 0, 0, .85);
+}
+
+.startButton {
+  margin-top: 16px;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, .85);
+  border-radius: 4px;
+  color: rgb(0, 0, 0, .85);
+  padding: 8px;
+  font-size: 120%;
+}
+
+.startButton:hover,
+.startButton:focus {
+  background:rgba(157, 214, 255, 0.6);
+}
+
+.title {
+  margin-bottom: 16px;
+}
+
+.feedbackTypes {
+  margin: 1em 0 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.feedbackTypes li {
+  margin: 8px 0;
+}
+
+.feedbackIcon:before {
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 0;
+  width: 0;
+  vertical-align: middle;
+}
+
+.feedbackIcon[attr-data='0']:before {
+  height: 1em;
+  width: 1em;
+  background: rgb(0, 0, 0, .65);
+}
+
+.feedbackIcon[attr-data='1']:before {
+  height: 1em;
+  width: 1em;
+  background: rgb(255, 181, .9);
+}
+
+.feedbackIcon[attr-data='2']:before {
+  height: 1em;
+  width: 1em;
+  background: rgba(29, 169, 29, .9);
+}

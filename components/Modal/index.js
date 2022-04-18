@@ -21,8 +21,10 @@ const Modal = ({children, isOpen, onClose}) => {
 
   const modalContainer = isOpen && (
     <div className={styles.modal} onClick={handleBackgroundClick}>
-      <div className={styles.childrenContainer} onClick={handleChildClick}>
-        {children}
+      <div className={styles.container}>
+        <div className={styles.childrenContainer} onClick={handleChildClick}>
+          {children}
+        </div>
       </div>
     </div>
   );

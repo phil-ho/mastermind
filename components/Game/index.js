@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import styles from './game.module.css';
 
+import Gameover from '../Gameover';
 import GuessList from '../GuessList';
 import Keyboard from '../Keyboard';
+import Modal from '../Modal';
+import Rules from '../Rules';
 
 const createFeedback = (guess, secretCode) => {
   let fullMatch = 0;
@@ -67,16 +70,28 @@ const Game = () => {
   const [secretCode, setSecretCode] = useState();
   const [guessList, setGuessList] = useState([]);
   const [currentGuess, setCurrentGuess] = useState();
+  const [showModal, setShowModal] = useState(false);
 
+  const zeroState = !isLoading && !secretCode;
+  const hasWon = guessList.length > 0 &&
+      guessList[guessList.length - 1].join('') === secretCode.join('');
+  const hasLost = !hasWon && guessList.length >= maxTurns;
+  const isPlaying = secretCode && !hasWon && !hasLost;
+
+  useEffect(() => {
+    if (hasWon || hasLost || zeroState) {
+      setShowModal(true);
+    }
+  }, [hasWon, hasLost, zeroState])
 
   const handleGuessChange = (codeArray) => {
-    if (!hasWon() && !hasLost()) {
+    if (!hasWon && !hasLost) {
       setCurrentGuess(codeArray);
     }
   };
 
   const handleGuessSubmit = () => {
-    if (!hasWon() && !hasLost()) {
+    if (!hasWon && !hasLost) {
       setGuessList([...guessList, currentGuess]);
       setCurrentGuess();
     }
@@ -87,25 +102,17 @@ const Game = () => {
     setSecretCode();
     setCurrentGuess();
     generateSecretCode();
-  };
-
-  const hasWon = () => {
-    return guessList.length > 0 &&
-      guessList[guessList.length - 1].join('') === secretCode.join('');
-  };
-
-  const hasLost = () => {
-    return !hasWon() && guessList.length >= maxTurns;
+    setShowModal(false);
   };
 
   const renderPrompt = () => {
     let message = "Can you crack the secret code?";
     const messageStyle = [styles.message];
-    if (hasWon()) {
+    if (hasWon) {
       message = 'You Cracked the Secret Code!';
       messageStyle.push(styles.hasWon);
     }
-    if (hasLost()) {
+    if (hasLost) {
       message = 'Sorry! You Failed to crack the code!';
       messageStyle.push(styles.hasLost);
     }
@@ -116,7 +123,7 @@ const Game = () => {
         <ul className={styles.showSecretList}>
           {secretCode.map((code, index) => (
             <li className={styles.showSecretListItem} key={index}>
-              {(hasWon() || hasLost()) ? code : "?"}
+              {(hasWon || hasLost) ? code : "?"}
             </li>
           ))}
         </ul>
@@ -136,24 +143,45 @@ const Game = () => {
         keys={codes}
         onChange={handleGuessChange}
         onEnter={handleGuessSubmit}
-        size={secretCodeLength}
-      />
+        size={secretCodeLength} />
     </>
   );
+
+  const renderModal = () => {
+    let modalContent;
+
+    if (zeroState || isPlaying) {
+      modalContent = <Rules onStartGame={handleNewGame} />;
+    };
+    if (hasWon || hasLost) {
+      modalContent = (
+        <Gameover
+          onStartGame={handleNewGame}
+          hasWon={hasWon}
+          secretCode={secretCode}
+          guessList={guessList} />
+      );
+    }
+
+    return (
+      <Modal isOpen={showModal} onClose={() => setShowModal(false)}>
+        {modalContent}
+      </Modal>
+    );
+  };
 
   return (
     <>
       <header className={styles.header}>
-        <h1>Mastermind</h1>
+        <h1 className={styles.title} onClick={() => setShowModal(true)}>Mastermind</h1>
       </header>
       <div className={styles.game}>
         {isLoading && (<div className={styles.loadingIndicator}>...LOADING...</div>)}
-        <button onClick={handleNewGame}>New Game</button>
         {secretCode && renderGame()}
       </div>
+      {renderModal()}
     </>
-  )
-
+  );
 };
 
 export default Game;

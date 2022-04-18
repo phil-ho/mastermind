@@ -36,8 +36,10 @@
   border-radius: 2px;
 }
 
+.key:focus,
 .key:hover {
-  border: 1px solid rgba(50, 100, 255, .9)
+  border: 1px solid rgba(50, 100, 255, .9);
+  background:rgba(157, 214, 255, 0.6);
 }
 
 .back {
