@@ -34,6 +34,7 @@ const Feedback = ({size, full, partial}) => {
       aria-hidden="true"
       attr-data={score}
       className={styles.feedbackIcon}
+      data-testid={`feedback-${score}`}
       key={index}>
     </span>
   ));

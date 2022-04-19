@@ -14,7 +14,7 @@ const Guess = ({ guess, secretCodeLength }) => {
         [styles.hasValue]: val,
       });
       tiles.push((
-        <div key={i} className={tileStyles}>{val}</div>
+        <div key={i} className={tileStyles} data-testid='guess-tile'>{val}</div>
       ))
     }
     return tiles;
