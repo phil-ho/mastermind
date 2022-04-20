@@ -27,8 +27,7 @@ The Player must guess the right number combinations within 10 attempts to win th
 
 # Features
 
-![pic 1](https://media.giphy.com/media/xHOn9asxmykQx4vDXZ/giphy.gif)
-![pic 2](https://media.giphy.com/media/ImxXZZ09FOXnzZ46dy/giphy.gif)
+![Mastermind - Winning](https://media.giphy.com/media/daPxJRIDA6AgGH2eeL/giphy.gif)
 
 Core:
 - ✅ Ability to guess the combinations of 4 numbers
