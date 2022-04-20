@@ -105,32 +105,6 @@ const Game = () => {
     setShowModal(false);
   };
 
-  const renderPrompt = () => {
-    let message = "Can you crack the secret code?";
-    const messageStyle = [styles.message];
-    if (hasWon) {
-      message = 'You Cracked the Secret Code!';
-      messageStyle.push(styles.hasWon);
-    }
-    if (hasLost) {
-      message = 'Sorry! You Failed to crack the code!';
-      messageStyle.push(styles.hasLost);
-    }
-
-    return (
-      <div className={styles.prompt}>
-        <h2 className={messageStyle.join(' ')}>{message}</h2>
-        <ul className={styles.showSecretList}>
-          {secretCode.map((code, index) => (
-            <li className={styles.showSecretListItem} key={index}>
-              {(hasWon || hasLost) ? code : "?"}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  };
-
   const renderGame = () => (
     <>
       <GuessList
@@ -173,7 +147,14 @@ const Game = () => {
   return (
     <>
       <header className={styles.header}>
-        <h1 className={styles.title} onClick={() => setShowModal(true)}>Mastermind</h1>
+        <button
+          className={styles.title}
+          onClick={() => setShowModal(true)}>
+          Mastermind
+          <span className="material-icons material-icons-outlined">
+            help_outline
+          </span>
+        </button>
       </header>
       <div className={styles.game}>
         {isLoading && (<div className={styles.loadingIndicator}>...LOADING...</div>)}
