@@ -18,7 +18,9 @@ const Template = args => (
 export const Default = Template.bind({});
 Default.args = {
   hasWon: true,
-  guesses: [],
+  guessList: [
+    [0, 0, 0, 0],
+    [1, 1, 1, 1],
+  ],
   secretCode: ['1','2','3','4'],
-  turns: 10,
 };

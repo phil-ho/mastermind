@@ -1,7 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import styles from './gameover.module.css';
 
+/**
+ * Modal for the end of game state (win or loss). Displays the secret code,
+ * the number of turns the Player took, and a button to start a new game
+ */
 const Gameover = ({onStartGame, hasWon, guessList=[], secretCode=[]}) => {
 
   const titleStyle = clsx({
@@ -37,6 +42,13 @@ const Gameover = ({onStartGame, hasWon, guessList=[], secretCode=[]}) => {
       </button>
     </div>
   );
+};
+
+Gameover.propTypes = {
+  onStartGame: PropTypes.func,
+  hasWon: PropTypes.bool,
+  guessList: PropTypes.array,
+  secretCode: PropTypes.array,
 };
 
 export default Gameover;
