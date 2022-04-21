@@ -62,8 +62,17 @@ const Feedback = ({size, full, partial}) => {
 };
 
 Feedback.propTypes = {
+  /**
+   * number of digits in guess which match the secretcode in value and location
+   */
   full: PropTypes.number,
+  /**
+   * number of digits in guess which match the secretCode in value but not location
+   */
   partial: PropTypes.number,
+  /**
+   * length of secretCode
+   */
   size: PropTypes.number,
 };
 

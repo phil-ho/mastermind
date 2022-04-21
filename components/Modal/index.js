@@ -1,8 +1,12 @@
 import React, {useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
 import styles from './modal.module.css';
 
+/**
+ * app-wide modal
+ */
 const Modal = ({children, isOpen, onClose}) => {
   const [isBrowser, setIsBrowser] = useState(false);
 
@@ -38,5 +42,20 @@ const Modal = ({children, isOpen, onClose}) => {
     return null;
   }
 }
+
+Modal.propTypes = {
+  /**
+   * children to render in modal
+   */
+  children: PropTypes.node,
+  /**
+   * true to show the modal, false to hide
+   */
+  isOpen: PropTypes.bool,
+  /**
+   * function to close modal, for background clicks
+   */
+  onClose: PropTypes.func,
+};
 
 export default Modal;

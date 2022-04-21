@@ -45,6 +45,9 @@ const Gameover = ({onStartGame, hasWon, guessList=[], secretCode=[]}) => {
 };
 
 Gameover.propTypes = {
+  /**
+   * callback when "New Game" Button is clicked
+   */
   onStartGame: PropTypes.func,
   hasWon: PropTypes.bool,
   guessList: PropTypes.array,

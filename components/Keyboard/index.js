@@ -1,7 +1,13 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './keyboard.module.css';
 
+/**
+ * renders on-screen keyboad of keys for Player to build, edit, and submit their guess
+ * onChange is fired with all keys in state
+ * onEnter is final callback to "submit" guess and will clear the state
+ */
 const Keyboard = ({
   keys,
   size,
@@ -70,6 +76,29 @@ const Keyboard = ({
       {backspaceButton}
     </div>
   )
+};
+
+Keyboard.propTypes = {
+  /**
+   * array of values that can be in the secretCode
+   */
+  keys: PropTypes.array,
+  /**
+   * the length of the secretCode / size of guess to build
+   */
+  size: PropTypes.number,
+  /**
+   * for submitting all the keys pressed (the guess)
+   * callback is invoked when clicking on the green return button
+   * callback is not invoked when length of keyPresses is less than size
+   * keyPresses Array is reset after onEnter is invoked
+   */
+  onEnter: PropTypes.func,
+  /**
+   * callback called every time the array of values making up the guess changes
+   * onChange: (keys: string[]) => void
+   */
+  onChange: PropTypes.func,
 };
 
 export default Keyboard;
