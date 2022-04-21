@@ -1,8 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import styles from './guess.module.css';
 
-
+/**
+ * The guess component renders a single guess made up of secretCodeLength Tiles.
+ */
 const Guess = ({ guess, secretCodeLength }) => {
 
   const renderCodeTiles = () => {
@@ -25,6 +28,11 @@ const Guess = ({ guess, secretCodeLength }) => {
       {renderCodeTiles()}
     </>
   )
+};
+
+Guess.propTypes = {
+  guess: PropTypes.array,
+  secretCodeLength: PropTypes.number.isRequired,
 };
 
 export default Guess;
