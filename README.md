@@ -62,7 +62,7 @@ npm run storybook
 ```
 
 ## Tests 🧪
-I used Jest & Testing-Library to do my unit testing.
+I used Jest & Testing-Library to do my testing.
 
 To run tests:
 ```

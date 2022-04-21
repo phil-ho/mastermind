@@ -7,6 +7,12 @@ import Keyboard from '../Keyboard';
 import Modal from '../Modal';
 import Rules from '../Rules';
 
+/**
+ * Util function for calculating guess feedback
+ * @param {string[]} guess
+ * @param {string[]} secretCode
+ * @return {{fullMatch: number, partialMatch: number}}
+ */
 const createFeedback = (guess, secretCode) => {
   let fullMatch = 0;
   let partialMatch = 0;
@@ -39,6 +45,9 @@ const createFeedback = (guess, secretCode) => {
   };
 }
 
+/**
+ * Main Game component
+ */
 const Game = () => {
   const codes = ['0', '1', '2', '3', '4', '5', '6', '7'];
   const maxTurns = 10;
