@@ -1,9 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Guess  from '../Guess';
 import Feedback from '../Feedback';
-
 import styles from './guessList.module.css';
 
+/**
+ * GuessList renders a list of guesses and their feedback.
+ */
 const GuessList = ({
   currentGuess,
   feedbackList,
@@ -65,6 +68,21 @@ const GuessList = ({
       {renderBlankGuesses()}
     </ul>
   )
+};
+
+GuessList.propTypes = {
+  currentGuess: PropTypes.array,
+  feedbackList: PropTypes.array,
+  guessList: PropTypes.array,
+  maxTurns: PropTypes.number,
+  secretCodeLength: PropTypes.number.isRequired,
+};
+
+GuessList.defaultProps = {
+  currentGuess: [],
+  feedbackList: [],
+  guessList: [],
+  maxTurns: 10,
 };
 
 export default GuessList;
