@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
-
+import PropTypes from 'prop-types';
 import styles from './feedback.module.css';
 
+/**
+ * Renders colored dots in randomize locations to
+ * visually represent guess feedback.
+ */
 const Feedback = ({size, full, partial}) => {
   const hasNoFeedback = full === undefined && partial === undefined;
 
@@ -57,5 +61,10 @@ const Feedback = ({size, full, partial}) => {
   );
 };
 
+Feedback.propTypes = {
+  full: PropTypes.number,
+  partial: PropTypes.number,
+  size: PropTypes.number,
+};
 
 export default Feedback;
