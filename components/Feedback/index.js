@@ -4,11 +4,17 @@ import styles from './feedback.module.css';
 
 /**
  * Renders colored dots in randomize locations to
- * visually represent guess feedback.
+ * visually represent feedback for a guess.
  */
 const Feedback = ({size, full, partial}) => {
   const hasNoFeedback = full === undefined && partial === undefined;
 
+  /**
+   * returns an array of twos, ones, and zeros which represent
+   * the types of feedback the computer is giving
+   *
+   * The array is shuffled to randomize where the feedback appears
+   */
   const randomizeFeedback = (size, full, partial) => {
     if (hasNoFeedback) {
       return new Array(size).fill(0);
